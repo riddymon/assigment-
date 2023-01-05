@@ -43,9 +43,13 @@ export class TaskItemComponent implements OnInit {
    * Retrieve a user based on provided assigneeId
    */
   retrieveUser() {
-    this.backend.user(this.task.assigneeId).subscribe((user) => {
-      this.name = user.name;
-    });
+    try {
+      this.backend.user(this.task.assigneeId).subscribe((user) => {
+        this.name = user.name;
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   retrieveStatus() {
