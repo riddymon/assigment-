@@ -14,7 +14,7 @@ import { AppState } from "src/app/store/task.reducer";
   templateUrl: "./task-detail.component.html",
   styleUrls: ["./task-detail.component.css"],
 })
-export class TaskDetailComponent implements OnInit, OnDestroy {
+export class TaskDetailComponent implements OnInit {
   @Input()
   isNewTask: boolean;
 
@@ -94,9 +94,5 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
    */
   eventCheck(event) {
     this.task.completed = event.target.checked;
-  }
-
-  ngOnDestroy(): void {
-    // throw new Error("Method not implemented.");
   }
 }
