@@ -10,7 +10,7 @@ import { SetCurrentTaskAction } from "src/app/store/task.action";
   styleUrls: ["./task-list.component.css"],
 })
 export class TaskListComponent implements OnInit {
-  tasks = this.backend.tasks();
+  tasks = this.retrieveTasks();
 
   constructor(
     private backend: BackendService,
@@ -51,5 +51,13 @@ export class TaskListComponent implements OnInit {
         task: newTask,
       },
     });
+  }
+
+  /**
+   * Retrieves a list of tasks from backend service
+   * @returns Object of type Observable<Task[]>
+   */
+  retrieveTasks() {
+    return this.backend.tasks();
   }
 }
