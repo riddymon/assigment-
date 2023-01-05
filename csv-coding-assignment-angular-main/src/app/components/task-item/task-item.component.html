@@ -1,0 +1,17 @@
+<div id="task-item-container">
+  <div id="indicator" [ngClass]="getIndicator()"></div>
+  <div id="task-details">
+    <div id="task-detail-item" class="task-detail-title">
+      {{ task.description }}
+    </div>
+    <div id="task-detail-item">
+      <ng-container *ngIf="task.assigneeId"
+        ><span>Assigned to {{ name }}</span></ng-container
+      >
+      <ng-container *ngIf="task.assigneeId === null"
+        ><span>Not Assigned</span></ng-container
+      >
+    </div>
+    <div id="task-detail-item">{{ retrieveStatus() }}</div>
+  </div>
+</div>

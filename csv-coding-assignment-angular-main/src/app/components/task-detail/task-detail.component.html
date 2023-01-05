@@ -1,0 +1,49 @@
+<div id="task-details-main">
+  <div id="task-details-title">
+    <div *ngIf="!isNewTask">
+      <h2 #taskDetailsID>Task ID: {{ task.id }}</h2>
+    </div>
+    <div>
+      <h2 *ngIf="isNewTask">Create task</h2>
+    </div>
+  </div>
+  <div id="task-details-container">
+    <div id="task-details-id"></div>
+    <div id="task-details-description">
+      <label for="detail-description">Description: </label
+      ><input
+        #taskDetailsDescriptionInput
+        name="detail-description"
+        value="{{ task.description }}"
+      />
+    </div>
+    <div id="task-details-assignee" *ngIf="!isNewTask">
+      <label for="details-assignee">Assignee: </label
+      ><input
+        #taskDetailsAssigneeInput
+        name="details-assignee"
+        value="{{ task.assigneeId }}"
+      />
+    </div>
+    <div id="task-details-completed" *ngIf="!isNewTask">
+      <label for="details-completed">Completed: </label
+      ><input
+        #taskDetailsCompletedInput
+        [attr.id]="completed - check"
+        type="checkbox"
+        [checked]="task.completed"
+        (change)="eventCheck($event)"
+        name="details-completed"
+      />
+    </div>
+  </div>
+  <div id="task-details-buttons">
+    <div id="button" *ngIf="isNewTask">
+      <button (click)="updateTask()">Add</button>
+    </div>
+    <div id="button" *ngIf="!isNewTask">
+      <button (click)="updateTask()">Update</button>
+    </div>
+    <div id="button"><button (click)="goBack()">Close</button></div>
+  </div>
+</div>

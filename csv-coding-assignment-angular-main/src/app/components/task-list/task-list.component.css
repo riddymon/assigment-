@@ -1,0 +1,13 @@
+#tasks-title {
+  background-color: lightslategrey;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 3em;
+  padding-left: 2em;
+}
+
+#addNew {
+  margin-left: 1em;
+}

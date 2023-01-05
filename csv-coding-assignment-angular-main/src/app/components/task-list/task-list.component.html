@@ -1,0 +1,11 @@
+<div id="tasks-title">
+  <div>
+    <h2>Tasks Dashboard</h2>
+  </div>
+  <div><button (click)="addNewTask()" id="addNew">Add New Task</button></div>
+</div>
+<div id="taks-container">
+  <ng-container *ngFor="let t of tasks | async">
+    <app-task-item [task]="t" (click)="openTaskDetails(t)"></app-task-item>
+  </ng-container>
+</div>
