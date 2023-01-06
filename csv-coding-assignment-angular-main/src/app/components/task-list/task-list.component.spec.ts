@@ -1,16 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { BackendService } from "src/app/backend.service";
+import { provideMockStore, MockStore } from "@ngrx/store/testing";
 
-import { TaskListComponent } from './task-list.component';
+import { TaskListComponent } from "./task-list.component";
 
-describe('TaskListComponent', () => {
+describe("TaskListComponent", () => {
   let component: TaskListComponent;
   let fixture: ComponentFixture<TaskListComponent>;
+  let homeState: string;
 
   beforeEach(async () => {
+    const state = {
+      selectedTask: {
+        id: null,
+        description: "",
+        assigneeId: null,
+        completed: false,
+      },
+    };
+    const task = {
+      id: 0,
+      description: "Test Task",
+      assigneeId: 111,
+      completed: false,
+    };
     await TestBed.configureTestingModule({
-      declarations: [ TaskListComponent ]
-    })
-    .compileComponents();
+      declarations: [TaskListComponent],
+      providers: [
+        { provide: BackendService, useValue: new BackendService() },
+        provideMockStore({ initialState: state }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +39,7 @@ describe('TaskListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

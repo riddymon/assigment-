@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
 import { BackendService, Task, User } from "src/app/backend.service";
 
 @Component({

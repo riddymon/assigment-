@@ -1,7 +1,7 @@
 <div id="task-details-main">
   <div id="task-details-title">
     <div *ngIf="!isNewTask">
-      <h2 #taskDetailsID>Task ID: {{ task.id }}</h2>
+      <h2 #taskDetailsID>Task ID: {{ task?.id }}</h2>
     </div>
     <div>
       <h2 *ngIf="isNewTask">Create task</h2>
@@ -14,7 +14,7 @@
       ><input
         #taskDetailsDescriptionInput
         name="detail-description"
-        value="{{ task.description }}"
+        value="{{ task?.description }}"
       />
     </div>
     <div id="task-details-assignee" *ngIf="!isNewTask">
@@ -22,26 +22,27 @@
       ><input
         #taskDetailsAssigneeInput
         name="details-assignee"
-        value="{{ task.assigneeId }}"
+        value="{{ task?.assigneeId }}"
       />
     </div>
     <div id="task-details-completed" *ngIf="!isNewTask">
       <label for="details-completed">Completed: </label
       ><input
+        id="completed-check"
         #taskDetailsCompletedInput
         [attr.id]="completed - check"
         type="checkbox"
-        [checked]="task.completed"
+        [checked]="task?.completed"
         (change)="eventCheck($event)"
         name="details-completed"
       />
     </div>
   </div>
   <div id="task-details-buttons">
-    <div id="button" *ngIf="isNewTask">
+    <div id="button" class="addButton" *ngIf="isNewTask">
       <button (click)="updateTask()">Add</button>
     </div>
-    <div id="button" *ngIf="!isNewTask">
+    <div id="button" class="updateButton" *ngIf="!isNewTask">
       <button (click)="updateTask()">Update</button>
     </div>
     <div id="button"><button (click)="goBack()">Close</button></div>
