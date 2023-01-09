@@ -1,6 +1,7 @@
 <div id="task-details-main">
   <div id="task-details-title">
     <div *ngIf="!isNewTask">
+      <h2>Test Task ID: {{ testTask.id }}</h2>
       <h2 #taskDetailsID>Task ID: {{ task?.id }}</h2>
     </div>
     <div>

@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { BackendService, Task } from "src/app/backend.service";
 import { AppState } from "src/app/store/task.reducer";
+import { select, Store } from "@ngrx/store";
+import { selectCurrentTask } from "src/app/store/task.selector";
 
 @Component({
   selector: "app-task-detail",
@@ -20,16 +22,35 @@ export class TaskDetailComponent implements OnInit {
 
   completed: boolean = false;
 
-  task: Task;
+  //Give task an initial value which we'll update later
+  task: Task = {
+    id: 0,
+    description: "",
+    assigneeId: null,
+    completed: false,
+  };
+  testTask: Task = {
+    id: 0,
+    description: "",
+    assigneeId: null,
+    completed: false,
+  };
 
-  constructor(private backend: BackendService) {}
+  constructor(
+    private backend: BackendService,
+    private store: Store<AppState>
+  ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     //Flag determines if this is a new task or an existing task
     this.isNewTask = history.state.isNewTask;
 
     //Grab ID - we can also pass entire task but using store instead for assignment
     this.task = history.state.task;
+    console.log("about to read store");
+    this.store.select(selectCurrentTask).subscribe((task) => {
+      console.log(task);
+    });
   }
 
   /**
