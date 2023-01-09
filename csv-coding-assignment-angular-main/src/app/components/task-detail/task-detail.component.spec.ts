@@ -40,4 +40,18 @@ describe("TaskDetailComponent", () => {
     let styles = window.getComputedStyle(updateButton.nativeElement);
     expect(styles.visibility).toBe("visible");
   });
+
+  it("should always have tasks with at LEAST a description", () => {
+    const fixture = TestBed.createComponent(TaskDetailComponent);
+    component.isNewTask = false;
+    fixture.detectChanges();
+    component.task = {
+      id: 0,
+      description: "",
+      assigneeId: 999,
+      completed: false,
+    };
+    fixture.detectChanges();
+    expect(task.description).length > 0;
+  });
 });

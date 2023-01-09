@@ -7,7 +7,6 @@ import { TaskListComponent } from "./task-list.component";
 describe("TaskListComponent", () => {
   let component: TaskListComponent;
   let fixture: ComponentFixture<TaskListComponent>;
-  let homeState: string;
 
   beforeEach(async () => {
     const state = {

@@ -3,6 +3,7 @@ import { BackendService, Task } from "src/app/backend.service";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { SetCurrentTaskAction } from "src/app/store/task.action";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-task-list",
@@ -10,7 +11,7 @@ import { SetCurrentTaskAction } from "src/app/store/task.action";
   styleUrls: ["./task-list.component.css"],
 })
 export class TaskListComponent implements OnInit {
-  tasks = this.retrieveTasks();
+  tasks: Observable<Task[]> = this.retrieveTasks();
 
   constructor(
     private backend: BackendService,
@@ -58,6 +59,11 @@ export class TaskListComponent implements OnInit {
    * @returns Object of type Observable<Task[]>
    */
   retrieveTasks() {
-    return this.backend.tasks();
+    try {
+      return this.backend.tasks();
+    } catch (error) {
+      console.log(error);
+      return new Observable<Task[]>();
+    }
   }
 }

@@ -1,6 +1,5 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { BackendService, Task } from "src/app/backend.service";
-import { AppState } from "src/app/store/task.reducer";
 
 @Component({
   selector: "app-task-detail",
@@ -8,15 +7,11 @@ import { AppState } from "src/app/store/task.reducer";
   styleUrls: ["./task-detail.component.css"],
 })
 export class TaskDetailComponent implements OnInit {
-  @Input()
-  isNewTask: boolean;
+  isNewTask: boolean = false;
 
-  @ViewChild("taskDetailsID") detailsID: ElementRef;
   @ViewChild("taskDetailsDescriptionInput") descriptionInput: ElementRef;
   @ViewChild("taskDetailsAssigneeInput") assigneeInput: ElementRef;
   @ViewChild("taskDetailsCompletedInput") completedInput: ElementRef;
-
-  private state: AppState;
 
   completed: boolean = false;
 
