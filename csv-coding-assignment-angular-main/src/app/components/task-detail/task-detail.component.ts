@@ -24,7 +24,7 @@ export class TaskDetailComponent implements OnInit {
 
   constructor(private backend: BackendService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     //Flag determines if this is a new task or an existing task
     this.isNewTask = history.state.isNewTask;
 
