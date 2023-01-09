@@ -20,6 +20,10 @@ export type Task = {
   completed: boolean;
 };
 
+/**
+ * Generates a random delay for mock api calls
+ * @returns random number in milliseconds
+ */
 function randomDelay() {
   return Math.random() * 1000;
 }
